@@ -61,6 +61,12 @@ The dataset will be used further identify how different factors of an outage and
   height="600"
   frameborder="0"
 ></iframe>
+<iframe
+  src="assets/countMonthCause.html"
+  width="800"
+  height="600"
+  frameborder="0"
+></iframe>
 
 ## Aggregate Analysis
 
