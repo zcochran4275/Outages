@@ -4,6 +4,7 @@ Final Project for DSC 80
 ### Question
 What effect does the cause of an outage have?
 We will be exploring this question through the use of the Outages dataset provided by Purdue University in which a raw preview is provided below.
+
 |   YEAR |   MONTH | CAUSE.CATEGORY     | CLIMATE.REGION     | CLIMATE.CATEGORY   | OUTAGE.DURATION   | OUTAGE.START.DATE                | OUTAGE.START.TIME            | OUTAGE.RESTORATION.DATE          | OUTAGE.RESTORATION.TIME      | DEMAND.LOSS.MW   |   TOTAL.CUSTOMERS | POPPCT_URBAN   | PCT_LAND         |   COM.CUSTOMERS |
 |-------:|--------:|:-------------------|:-------------------|:-------------------|:------------------|:---------------------------------|:-----------------------------|:---------------------------------|:-----------------------------|:-----------------|------------------:|:---------------|:-----------------|----------------:|
 |    nan |     nan | nan                | nan                | nan                | mins              | Day of the week, Month Day, Year | Hour:Minute:Second (AM / PM) | Day of the week, Month Day, Year | Hour:Minute:Second (AM / PM) | Megawatt         |     nan           | %              | %                |             nan |
@@ -43,6 +44,7 @@ We will be exploring this question through the use of the Outages dataset provid
 ></iframe>
 
 ## Aggregate Analysis
+
 | CAUSE.CATEGORY     |   equipment failure |   fuel supply emergency |   intentional attack |   islanding |   public appeal |   severe weather |   system operability disruption |
 |:-------------------|--------------------:|------------------------:|---------------------:|------------:|----------------:|-----------------:|--------------------------------:|
 | CLIMATE.REGION     |                     |                         |                      |             |                 |                  |                                 |
