@@ -63,7 +63,7 @@ The dataset will be used further identify how different factors of an outage and
 ></iframe>
 <iframe
   src="assets/countMonthCause.html"
-  width="800"
+  width="1000"
   height="600"
   frameborder="0"
 ></iframe>
