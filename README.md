@@ -3,15 +3,34 @@ Final Project for DSC 80
 ## Introduction
 ### Question
 What effect does the cause of an outage have?
+
+### Data
+
 We will be exploring this question through the use of the Outages dataset provided by Purdue University in which a raw preview is provided below.
 
-|   YEAR |   MONTH | CAUSE.CATEGORY     | CLIMATE.REGION     | CLIMATE.CATEGORY   | OUTAGE.DURATION   | OUTAGE.START.DATE                | OUTAGE.START.TIME            | OUTAGE.RESTORATION.DATE          | OUTAGE.RESTORATION.TIME      | DEMAND.LOSS.MW   |   TOTAL.CUSTOMERS | POPPCT_URBAN   | PCT_LAND         |   COM.CUSTOMERS |
-|-------:|--------:|:-------------------|:-------------------|:-------------------|:------------------|:---------------------------------|:-----------------------------|:---------------------------------|:-----------------------------|:-----------------|------------------:|:---------------|:-----------------|----------------:|
-|    nan |     nan | nan                | nan                | nan                | mins              | Day of the week, Month Day, Year | Hour:Minute:Second (AM / PM) | Day of the week, Month Day, Year | Hour:Minute:Second (AM / PM) | Megawatt         |     nan           | %              | %                |             nan |
-|   2011 |       7 | severe weather     | East North Central | normal             | 3060              | 2011-07-01 00:00:00              | 17:00:00                     | 2011-07-03 00:00:00              | 20:00:00                     | nan              |       2.5957e+06  | 73.27          | 91.5926658691451 |          276286 |
-|   2014 |       5 | intentional attack | East North Central | normal             | 1                 | 2014-05-11 00:00:00              | 18:38:00                     | 2014-05-11 00:00:00              | 18:39:00                     | nan              |       2.64074e+06 | 73.27          | 91.5926658691451 |          284978 |
-|   2010 |      10 | severe weather     | East North Central | cold               | 3000              | 2010-10-26 00:00:00              | 20:00:00                     | 2010-10-28 00:00:00              | 22:00:00                     | nan              |       2.5869e+06  | 73.27          | 91.5926658691451 |          276463 |
-|   2012 |       6 | severe weather     | East North Central | normal             | 2550              | 2012-06-19 00:00:00              | 04:30:00                     | 2012-06-20 00:00:00              | 23:00:00                     | nan              |       2.60681e+06 | 73.27          | 91.5926658691451 |          278466 |
+|   YEAR |   MONTH | CAUSE.CATEGORY     | CLIMATE.REGION     | CLIMATE.CATEGORY   | OUTAGE.DURATION   | OUTAGE.START.DATE                | OUTAGE.START.TIME            | OUTAGE.RESTORATION.DATE          | OUTAGE.RESTORATION.TIME      | DEMAND.LOSS.MW   |   TOTAL.CUSTOMERS | POPPCT_URBAN   | POPDEN_URBAN            | PCT_LAND         |   COM.CUSTOMERS |
+|-------:|--------:|:-------------------|:-------------------|:-------------------|:------------------|:---------------------------------|:-----------------------------|:---------------------------------|:-----------------------------|:-----------------|------------------:|:---------------|:------------------------|:-----------------|----------------:|
+|    nan |     nan | nan                | nan                | nan                | mins              | Day of the week, Month Day, Year | Hour:Minute:Second (AM / PM) | Day of the week, Month Day, Year | Hour:Minute:Second (AM / PM) | Megawatt         |     nan           | %              | persons per square mile | %                |             nan |
+|   2011 |       7 | severe weather     | East North Central | normal             | 3060              | 2011-07-01 00:00:00              | 17:00:00                     | 2011-07-03 00:00:00              | 20:00:00                     | nan              |       2.5957e+06  | 73.27          | 2279                    | 91.5926658691451 |          276286 |
+|   2014 |       5 | intentional attack | East North Central | normal             | 1                 | 2014-05-11 00:00:00              | 18:38:00                     | 2014-05-11 00:00:00              | 18:39:00                     | nan              |       2.64074e+06 | 73.27          | 2279                    | 91.5926658691451 |          284978 |
+|   2010 |      10 | severe weather     | East North Central | cold               | 3000              | 2010-10-26 00:00:00              | 20:00:00                     | 2010-10-28 00:00:00              | 22:00:00                     | nan              |       2.5869e+06  | 73.27          | 2279                    | 91.5926658691451 |          276463 |
+|   2012 |       6 | severe weather     | East North Central | normal             | 2550              | 2012-06-19 00:00:00              | 04:30:00                     | 2012-06-20 00:00:00              | 23:00:00                     | nan              |       2.60681e+06 | 73.27          | 2279                    | 91.5926658691451 |          278466 |
+
+The dataset will be used further identify how different factors of an outage and where the outage occured affect the duration of an outage. The dataset has 1535 rows with the first row containing the units for the columns. The columns we we will be taking a closer look at include:
+
+**CAUSE.CATEGORY:** Categories of all the events causing the major power outages
+
+**OUTAGE.DURATION:** Duration of outage events (in minutes)
+
+**DEMAND.LOSS.MW:** Amount of peak demand lost during an outage event (in Megawatt) [but in many cases, total demand is reported]
+
+**CLIMATE.REGION:** U.S. Climate regions as specified by National Centers for Environmental Information (nine climatically consistent regions in continental U.S.A.)
+
+**TOTAL.CUSTOMERS:** Annual number of total customers served in the U.S. state
+
+**POPPCT_URBAN:** Percentage of the total population of the U.S. state represented by the urban population (in %)
+
+**POPDEN_URBAN:** 	Population density of the urban areas (persons per square mile)
 
 ## Data Cleaning
 
