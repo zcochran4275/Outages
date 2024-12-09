@@ -12,7 +12,12 @@ Final Project for DSC 80
 ## Data Cleaning
 
 ## Univariate Analysis
-
+<iframe
+  src="DistOfDuration.html"
+  width="800"
+  height="600"
+  frameborder="0"
+></iframe>
 ## Bivariate Analysis
 
 ## Aggregate Analysis
