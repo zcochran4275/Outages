@@ -18,9 +18,26 @@ Final Project for DSC 80
   height="600"
   frameborder="0"
 ></iframe>
+<iframe
+  src="assets/distOfCauses.html"
+  width="800"
+  height="600"
+  frameborder="0"
+></iframe>
 
 ## Bivariate Analysis
-
+<iframe
+  src="assets/durationByMonth.html"
+  width="800"
+  height="600"
+  frameborder="0"
+></iframe>
+<iframe
+  src="assets/durationByCause.html"
+  width="800"
+  height="600"
+  frameborder="0"
+></iframe>
 ## Aggregate Analysis
 | CAUSE.CATEGORY     |   equipment failure |   fuel supply emergency |   intentional attack |   islanding |   public appeal |   severe weather |   system operability disruption |
 |:-------------------|--------------------:|------------------------:|---------------------:|------------:|----------------:|-----------------:|--------------------------------:|
