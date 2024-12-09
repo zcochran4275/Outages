@@ -13,7 +13,7 @@ Final Project for DSC 80
 
 ## Univariate Analysis
 <iframe
-  src="DistOfDuration.html"
+  src="assets/DistOfDuration.html"
   width="800"
   height="600"
   frameborder="0"
