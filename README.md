@@ -2,6 +2,7 @@
 Final Project for DSC 80
 ## Introduction
 ### Question
+
 What effect does the cause of an outage have?
 
 ### Data
