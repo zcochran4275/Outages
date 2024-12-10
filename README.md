@@ -215,11 +215,11 @@ The baseline model is a **linear regression model** trained to predict OUTAGE.DU
 
 ### Model Performance
 - ***R^2 Scores***:
-  - Training Set: 0.1829
-  - Test Set: 0.1048
+  - Training Set: 0.1638
+  - Test Set: 0.1071
 - **Root Mean Squared Error (RMSE)***:
-  - Training Set: 96.30
-  - Test Set: 57.75
+  - Training Set: 97.412
+  - Test Set: 57.673
 
 ### Evaluation of Model
 The R^2 values for both the training and test sets indicate that the baseline model explains only a small portion of the variance in OUTAGE.DURATION. However, the RMSE values suggest that the model is moderately accurate in predicting the average duration of an outage, with a difference of approximately 57 hours on unseen data. This baseline model provides a simple starting point for prediction and will serve as a reference for evaluating the improvements made in the final model.
