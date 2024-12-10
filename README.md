@@ -268,14 +268,23 @@ The final model is a **support vector regression model** trained to predict OUTA
       - A colder climate may take longer to restore an outage than a warmer climate
   - CLIMATE.REGION (one-hot encoded)
       - Certain regionds may have higher outage durations than others or be better at dealing with outages
-
+### Hyperparameters
+  - Kernel: Specifies the kernel type to be used in the algorithm
+      - Values: Linear or Rbf
+  - C: Regularization parameter. The strength of the regularization is inversely proportional to C
+      - Values: .1, 1, 10, 100, 200, or 500
+  - Gamma: Kernel coefficient for ‘rbf’, ‘poly’ and ‘sigmoid’.
+      - Vales: scale, auto, .1, 1, 10, or 100
+  - Epsilon: Epsilon in the epsilon-SVR model. It specifies the epsilon-tube within which no penalty is associated in the training loss function with points predicted within a distance epsilon from the actual value.
+      - Values: .01, .1, .2, .3, .4
+  Used GridSearchCV to find the best hyperparameters using 5 fold cross-validation. The best hyperparameters were C: 100, Epsilon: .4, Gamma: 1, Kernel: "rbf.
     
 ### Model Performance
 - **R^2 Scores**:
   - Training Set: .394
   - Test Set: .115
 - **Root Mean Squared Error (RMSE)**:
-  - Training Set: 75.70
+  - Training Set: 75.68
   - Test Set: 100.13
 
 
