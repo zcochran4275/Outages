@@ -277,7 +277,8 @@ The final model is a **support vector regression model** trained to predict OUTA
       - Vales: scale, auto, .1, 1, 10, or 100
   - Epsilon: Epsilon in the epsilon-SVR model. It specifies the epsilon-tube within which no penalty is associated in the training loss function with points predicted within a distance epsilon from the actual value.
       - Values: .01, .1, .2, .3, .4
-  Used GridSearchCV to find the best hyperparameters using 5 fold cross-validation. The best hyperparameters were C: 100, Epsilon: .4, Gamma: 1, Kernel: "rbf.
+  
+Used GridSearchCV to find the best hyperparameters using 5 fold cross-validation. The best hyperparameters were C: 100, Epsilon: .4, Gamma: 1, Kernel: "rbf.
     
 ### Model Performance
 - **R^2 Scores**:
