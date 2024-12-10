@@ -35,19 +35,27 @@ The dataset will be used further identify how different factors of an outage and
 
 ## Data Cleaning
 
+To clean the data we took the steps of taking the Outage start time column and date column and combining them and converting the time into a pd.Timestamp to be used as timestamp value. We additionally did this same process for when the restoration columns so that the start of the outage and when the outage was restored were in the correct and accurate format and dropped the old start/restoration columns. Next we made the OUTAGE.DURATION column the difference between the restoration column and when the outage started. Additionally we scaled the duration column to hours instead of minutes so that the numbers were easier to interpret and visualize.
+
 ## Univariate Analysis
+
 <iframe
   src="assets/DistOfDuration.html"
   width="800"
   height="600"
   frameborder="0"
 ></iframe>
+
+This distrubtion shows how a majority of the outage durations are quite small and take less than 1 day (24hrs) to restore. However, due to the distribution being right tailed there are a few extreme outage durations that took around 25+ days to restore. 
+
 <iframe
   src="assets/distOfCauses.html"
   width="800"
   height="600"
   frameborder="0"
 ></iframe>
+
+This pie chart shows how a majority (approximately 50%) of outages are caused by severe weather and another 25% being caused by intentional attacks. All the other causes of outages happen evenly at around 5% for each of the other causes. 
 
 ## Bivariate Analysis
 <iframe
