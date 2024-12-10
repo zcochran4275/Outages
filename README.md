@@ -151,11 +151,11 @@ The permutation test for PCT_LAND yielded a p-value of 0.128, suggesting no sign
 
 This result implies that geographic land area does not influence whether demand loss values are missing. The missingness is likely influenced by other variables or processes unrelated to land area.
 
-## Hypothesis Test
+## Do Severe Weather Outages Have Longer Outage Durations
 
 ### Hypotheses
 - ***Null Hypothesis***: The mean outage duration is the same for outages caused by severe weather and those not caused by severe weather. Any observed difference is due to random chance.
-- ***Alternative Hypothesis***: The mean outage duration is different for outages caused by severe weather compared to those not caused by severe weather.
+- ***Alternative Hypothesis***: The mean outage duration is greater for outages caused by severe weather compared to those not caused by severe weather.
 
 ### Test Statistic
 The test statistic is the difference in mean outage durations between outages caused by severe weather and those caused by other reasons
