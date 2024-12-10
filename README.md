@@ -66,24 +66,33 @@ This distrubtion shows how a majority of the outage durations are quite small an
 This pie chart shows how a majority (approximately 50%) of outages are caused by severe weather and another 25% being caused by intentional attacks. All the other causes of outages happen evenly at around 5% for each of the other causes. 
 
 ## Bivariate Analysis
-<iframe
-  src="assets/durationByMonth.html"
-  width="800"
-  height="600"
-  frameborder="0"
-></iframe>
+
 <iframe
   src="assets/durationByCause.html"
   width="800"
   height="600"
   frameborder="0"
 ></iframe>
+
+This bar chart shows that the outages that are caused by fuel emergencies have a significantly higher outage duration than any of the causes. However, it is important to note that fuel emergencies are only the cause of about 3% of outages. Additionally severe weather outages tend to have a higher outage duration than the other causes and happen quite often too (50%). 
+
 <iframe
   src="assets/countMonthCause.html"
   width="1000"
   height="600"
   frameborder="0"
 ></iframe>
+
+
+
+<iframe
+  src="assets/durationByMonth.html"
+  width="800"
+  height="600"
+  frameborder="0"
+></iframe>
+
+
 
 ## Aggregate Analysis
 
