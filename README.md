@@ -197,15 +197,17 @@ The response variable is OUTAGE.DURATION, which measures the length of an outage
 
 ### Features Used for Prediction
 The features used to predict OUTAGE.DURATION are:
-- CAUSE.CATEGORY: The cause of the outage (e.g., severe weather, equipment failure).
-- CLIMATE.REGION: The region where the outage occurred.
-- PCT_LAND: The percentage of the area covered by land in the affected region.
-- COM.CUSTOMERS: The number of commercial customers impacted by the outage.
+- CLIMATE.REGION (Nominal): The region where the outage occurred.
+- CLIMATE.CATEGORY (NOMINAL): The category of the climate i.e. warm, cold, or normal.
+- PCT_LAND (Quantitative): The percentage of the area covered by land in the affected region.
+- TOTAL.CUSTOMERS (Quantitative): The number of total customers covered by the utility that had the outage.
+- MONTH (Ordinal): the month the outage occured in.
+- POPDEN_URBAN (Quantitative): The population density of the urban parts that the utitlity covers.
 
 These features are justified because they are all known at the time of prediction and are likely to influence outage duration.
 
 ### Justification of Features
-At the time of prediction (when an outage begins), we would have information about the cause of the outage (CAUSE.CATEGORY), the geographical and environmental context (CLIMATE.REGION, PCT_LAND), and the expected impact (COM.CUSTOMERS). Using these features ensures that the model is realistic and does not use data that would only become available after the outage ends.
+At the time of prediction (when an outage begins), we would have information about the geographical and environmental context (CLIMATE.REGION, CLIMATE.CATEGORY, PCT_LAND, POPDEN_URBAN), as well as the month the outage is occuring in, and the how much customers are currently being serviced (TOTAL.CUSTOMERS). Using these features ensures that the model is realistic and does not use data that would only become available after the outage ends.
 
 ### Evaluation Metric
 The evaluation metric chosen for this regression problem is the **Root Mean Squared Error (RMSE)**. We selected RMSE because:
@@ -213,7 +215,7 @@ The evaluation metric chosen for this regression problem is the **Root Mean Squa
 - It provides results in the same units as the response variable (hours), which is easier to interpret compared to other metrics like Mean Absolute Error (MAE).
 
 ### Why RMSE?
-While MAE is less sensitive to outliers, we chose RMSE because it highlights situations where the model performs poorly for extreme outage durations. For this application, it’s important to minimize large errors as these could represent severe misjudgments in resource allocation during outages.
+While Mean Absolute Error is less sensitive to outliers, we chose RMSE because it highlights situations where the model performs poorly for extreme outage durations. For this application, it’s important to minimize large errors as these could represent severe misjudgments in resource allocation during outages.
 
 [Link to prediction-related visualizations]
 
@@ -223,44 +225,58 @@ While MAE is less sensitive to outliers, we chose RMSE because it highlights sit
 The baseline model is a **linear regression model** trained to predict OUTAGE.DURATION in hours using three categorical features: CAUSE.CATEGORY, CLIMATE.CATEGORY, and CLIMATE.REGION. These features were encoded using **one-hot encoding**, dropping the first category in each column to ensure proper model interpretability.
 
 ### Features
-- **Quantitative Features**: None
+- **Quantitative/Ordinal Features**:
+  - MONTH
+  - POPDEN_URBAN
+  - TOTAL.CUSTOMERS
+  - PCT_LAND
 - **Nominal Features**: 
-  - CAUSE.CATEGORY (one-hot encoded)
   - CLIMATE.CATEGORY (one-hot encoded)
   - CLIMATE.REGION (one-hot encoded)
 
 ### Model Performance
 - ***R^2 Scores***:
-  - Training Set: 0.1638
-  - Test Set: 0.1071
+  - Training Set: 0.044
+  - Test Set: 0.48
 - **Root Mean Squared Error (RMSE)***:
-  - Training Set: 97.412
-  - Test Set: 57.673
+  - Training Set: 95.07
+  - Test Set: 103.84
 
 ### Evaluation of Model
-The R^2 values for both the training and test sets indicate that the baseline model explains only a small portion of the variance in OUTAGE.DURATION. However, the RMSE values suggest that the model is moderately accurate in predicting the average duration of an outage, with a difference of approximately 57 hours on unseen data. This baseline model provides a simple starting point for prediction and will serve as a reference for evaluating the improvements made in the final model.
+The R^2 values for both the training and test sets indicate that the baseline model explains only a small portion of the variance in OUTAGE.DURATION. However, the RMSE values suggest that the model is moderately accurate in predicting the average duration of an outage, with a difference of approximately 104 hours on unseen data. This baseline model provides a simple starting point for prediction and will serve as a reference for evaluating the improvements made in the final model.
 
 ## Final Model
 
 ### Model Overview
-The final model is a **linear regression model** trained to predict OUTAGE.DURATION in hours. This model expands upon the baseline by including an additional categorical feature, MONTH, and retaining quantitative features by setting remainder="passthrough". This ensures that all available numerical features are used alongside the one-hot encoded categorical features.
+The final model is a **support vector regression model** trained to predict OUTAGE.DURATION in hours. This model expands upon the baseline by including an additional categorical feature, CATEGORY.CAUSE, and One hot encoded this feature. We also added additional engineered features. We transformed TOTAL.CUSTOMERS and PCT_LAND into 4 quantiles as to limit the extremes of these two features and reduce variability. Another engineered feature is binarizing POPDEN_URBAN with a thresshold of 2600 to also reduce variability and extreme values and split values into either not dense or dense values. We believe that these new features each have their own benefit that will drive the error down for our new model.
 
 ### Features
-- **Quantitative Features**:
-  - All remaining numerical columns (passed through without transformation).
+- **Quantitative/Ordinal Features**:
+  - TOTAL.CUSTOMERS - split into 4 quantiles
+      - Outages where a utility has a lot of people to cover may take longer than others
+  - PCT_LAND - split into 4 quantiles
+      - Outages that occur where there may be a lot of water can take longer due to limited access
+      - PCT_LAND is one of the columns most linearly correlated to OUTAGE.DURATION
+  - POPDEN_URBAN - Binarized with a threshold of 2600
+      - Outages in more dense areas may take longer to restore
+  - MONTH - Passed through
+      - Month appears to have a relationship with OUTAGE.DURATION as shown in the bivariate graph above
 - **Nominal Features**:
   - CAUSE.CATEGORY (one-hot encoded)
+      - Cause appears to have a relationship with OUTAGE.DURATION as explored in the hypothesis tests above
   - CLIMATE.CATEGORY (one-hot encoded)
+      - A colder climate may take longer to restore an outage than a warmer climate
   - CLIMATE.REGION (one-hot encoded)
-  - MONTH (one-hot encoded)
+      - Certain regionds may have higher outage durations than others or be better at dealing with outages
 
+    
 ### Model Performance
 - **R^2 Scores**:
-  - Training Set: 0.00017
-  - Test Set: -0.0206
+  - Training Set: .394
+  - Test Set: .115
 - **Root Mean Squared Error (RMSE)**:
-  - Training Set: 106.522
-  - Test Set: 61.660
+  - Training Set: 75.70
+  - Test Set: 100.13
 
 
 
