@@ -108,3 +108,11 @@ This graph shows how during the late fall months the outage durations tended to 
 | Southwest          |             1.89667 |               1.26667   |             4.42787  |   0.0333333 |         37.9167 |         192.882  |                         5.48704 |
 | West               |             8.74683 |             102.577     |            14.2946   |   3.58095   |         33.8019 |          48.8062 |                         6.06111 |
 | West North Central |             1.01667 |             nan         |             0.391667 |   1.13667   |          7.325  |          40.7083 |                       nan       |
+
+This table shows the average outage duration for each outage cause and climate region. This is significant because it can help identify regions that are more prone to have worse outages for specific causes. For example, the East North Central region has a significantly higher outage duration for equipment failure than other regionds. Also, The southwest region also seems to have a higher outage duration for severe weather. Given this information these regions can develop specific plans for how to address these areas and find what may be causing the difference. 
+
+
+
+
+
+
