@@ -237,7 +237,7 @@ The baseline model is a **linear regression model** trained to predict OUTAGE.DU
 ### Model Performance
 - ***R^2 Scores***:
   - Training Set: 0.044
-  - Test Set: 0.48
+  - Test Set: 0.048
 - **Root Mean Squared Error (RMSE)***:
   - Training Set: 95.07
   - Test Set: 103.84
