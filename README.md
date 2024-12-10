@@ -168,18 +168,24 @@ This test statistic was chosen because it directly measures the relationship bet
   - For each permutation, we calculate the difference in mean outage durations, building a null distribution of the test statistic.
 
 ### Results
+
+<iframe
+  src="assets/ptestIsStorm.html"
+  width="800"
+  height="600"
+  frameborder="0"
+></iframe>
+
 - Observed Difference in Means: 42.297
 - P-Value: 0.0
 
 ### Conclusion
 At a significance level of 0.05:
--  We reject the null hypothesis and conclude that there is evidence to suggest that severe weather affects the duration of outages.
+-  We reject the null hypothesis and conclude that there is evidence to suggest that severe weather tends to have higher durations for outages.
 - the observed difference in mean outage durations between outages caused by severe weather and those caused by other reasons is statistically significant
 
 ### Justification
 The choice of a permutation test is appropriate because it makes no assumptions about the distribution of the data, and it allows us to test the specific question of whether the observed difference in means could have arisen by chance. By focusing on the mean difference, the test is directly aligned with our research question.
-
-[Link]
 
 ## Prediction Problem
 
