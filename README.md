@@ -111,7 +111,7 @@ This graph shows how during the late fall months the outage durations tended to 
 
 This table shows the average outage duration for each outage cause and climate region. This is significant because it can help identify regions that are more prone to have worse outages for specific causes. For example, the East North Central region has a significantly higher outage duration for equipment failure than other regionds. Also, The southwest region also seems to have a higher outage duration for severe weather. Given this information these regions can develop specific plans for how to address these areas and find what may be causing the difference. 
 
-## Assesment of Analysis
+## Assesment of Missingness
 
 ### Non-Missing at Random (NMAR)
 
@@ -123,7 +123,8 @@ Exploring the general data reporting practices and how comprehensive or timely t
 - Level of technology used by utility reporting data
 - Collecting information on each utility's data reporting practices and procedures
 
-
+### Missingness of the DEMAND.LOSS.MW
+The missingness mechanism for DEMAND.LOSS.MW could be correlated to the other columns in our dataframe as the loss may be missing based on how many customers a utility has. To test this we will perform permutation tests on the missingness of DEMAND.LOSS.MW for different columns in our dataset to see which ones if any DEMAND.LOSS.MW may be dependently missing on.
 ### Results of Missingness Permutation Tests
 
 #### COM.CUSTOMERS
