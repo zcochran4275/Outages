@@ -114,13 +114,15 @@ This table shows the average outage duration for each outage cause and climate r
 ## Assesment of Analysis
 
 ### Non-Missing at Random (NMAR)
-The missingness of `DEMAND.LOSS.MW` in our dataset is likely **NMAR**. This is because the missingness may depend on factors not present in the dataset, such as reporting inconsistencies or operational decisions. For example, smaller outages with negligible demand losses may not have been recorded intentionally or due to human error during data entry.
+
+The missingness of the CAUSE.CATEGORY.DETAIL is most likely NMAR because the fact that a value is missing most likely depends on the detail itself. 
+If the detail is very complicated/long then it is more likely to be missing than outage that can be simply explained by lightning.
 
 ### Additional Data Needed
-To reframe the missingness as **Missing at Random (MAR)**, we would need:
-- **Reporting Guidelines**: Details on the protocols for logging demand loss values, such as thresholds for recording outages.
-- **Region-Specific Practices**: Insights into how different regions handle outage reporting.
-- **Data Collection Metadata**: Logs of how and when data was recorded, including potential human or technical errors.
+Exploring the general data reporting practices and how comprehensive or timely the data collection process is for specific causes of outages could clarify whether missingness is due to the nature of the event (suggesting NMAR) or is more related to logistical reporting factors (suggesting MAR).
+- Level of technology used by utility reporting data
+- Collecting information on each utility's data reporting practices and procedures
+
 
 ### Results of Missingness Permutation Tests
 
