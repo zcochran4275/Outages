@@ -111,6 +111,141 @@ This graph shows how during the late fall months the outage durations tended to 
 
 This table shows the average outage duration for each outage cause and climate region. This is significant because it can help identify regions that are more prone to have worse outages for specific causes. For example, the East North Central region has a significantly higher outage duration for equipment failure than other regionds. Also, The southwest region also seems to have a higher outage duration for severe weather. Given this information these regions can develop specific plans for how to address these areas and find what may be causing the difference. 
 
+## Assesment of Analysis
+
+### Non-Missing at Random (NMAR)
+The missingness of `DEMAND.LOSS.MW` in our dataset is likely **NMAR**. This is because the missingness may depend on factors not present in the dataset, such as reporting inconsistencies or operational decisions. For example, smaller outages with negligible demand losses may not have been recorded intentionally or due to human error during data entry.
+
+### Additional Data Needed
+To reframe the missingness as **Missing at Random (MAR)**, we would need:
+- **Reporting Guidelines**: Details on the protocols for logging demand loss values, such as thresholds for recording outages.
+- **Region-Specific Practices**: Insights into how different regions handle outage reporting.
+- **Data Collection Metadata**: Logs of how and when data was recorded, including potential human or technical errors.
+
+### Results of Missingness Permutation Tests
+
+#### COM.CUSTOMERS
+The permutation test for COM.CUSTOMERS yielded a p-value of 0.0. This indicates a strong dependency between the missingness of DEMAND.LOSS.MW and the number of commercial customers (COM.CUSTOMERS). The absolute difference in means is significantly larger than what would be expected under the null hypothesis, meaning that missing demand loss values are not random with respect to COM.CUSTOMERS.
+
+This finding suggests that outages affecting higher numbers of commercial customers are more likely to have demand loss values recorded, while smaller outages (affecting fewer commercial customers) may have missing values due to prioritization or reporting biases.
+
+[Link]
+
+#### PCT_LAND
+The permutation test for PCT_LAND yielded a p-value of 0.22, suggesting no significant dependency between the missingness of DEMAND.LOSS.MW and the percentage of land area (PCT_LAND). The absolute difference in means lies well within the range of test statistics under the null hypothesis, supporting the conclusion that missingness in DEMAND.LOSS.MW is independent of PCT_LAND.
+
+This result implies that geographic land area does not influence whether demand loss values are missing. The missingness is likely influenced by other variables or processes unrelated to land area.
+
+[Link]
+
+## Hypothesis Test
+
+### Hypotheses
+- ***Null Hypothesis***: The mean outage duration is the same for outages caused by severe weather and those not caused by severe weather. Any observed difference is due to random chance.
+- ***Alternative Hypothesis***: The mean outage duration is different for outages caused by severe weather compared to those not caused by severe weather.
+
+### Test Statistic
+The test statistic is the difference in mean outage durations between outages caused by severe weather and those caused by other reasons
+This test statistic was chosen because it directly measures the relationship between the type of cause and the resulting outage duration, which is the focus of our question.
+
+### Test Details
+- Significance Level: 0.05
+- **Permutation Test**:
+  - We randomly shuffle the is_storm labels (True for severe weather, False for other causes) 10,000 times.
+  - For each permutation, we calculate the difference in mean outage durations, building a null distribution of the test statistic.
+
+### Results
+- Observed Difference in Means: 42.297
+- P-Value: 0.0
+
+### Conclusion
+At a significance level of 0.05:
+-  We reject the null hypothesis and conclude that there is evidence to suggest that severe weather affects the duration of outages.
+- the observed difference in mean outage durations between outages caused by severe weather and those caused by other reasons is statistically significant
+
+### Justification
+The choice of a permutation test is appropriate because it makes no assumptions about the distribution of the data, and it allows us to test the specific question of whether the observed difference in means could have arisen by chance. By focusing on the mean difference, the test is directly aligned with our research question.
+
+[Link]
+
+## Prediction Problem
+
+### Type of Prediction Problem
+This is a regression problem, where the goal is to predict the OUTAGE.DURATION (response variable) in hours based on features available at the time of prediction.
+
+### Response Variable
+The response variable is OUTAGE.DURATION, which measures the length of an outage in hours. We chose this variable because understanding and accurately predicting outage durations can help in resource allocation and emergency planning during outages.
+
+### Features Used for Prediction
+The features used to predict OUTAGE.DURATION are:
+- CAUSE.CATEGORY: The cause of the outage (e.g., severe weather, equipment failure).
+- CLIMATE.REGION: The region where the outage occurred.
+- PCT_LAND: The percentage of the area covered by land in the affected region.
+- COM.CUSTOMERS: The number of commercial customers impacted by the outage.
+
+These features are justified because they are all known at the time of prediction and are likely to influence outage duration.
+
+### Justification of Features
+At the time of prediction (when an outage begins), we would have information about the cause of the outage (CAUSE.CATEGORY), the geographical and environmental context (CLIMATE.REGION, PCT_LAND), and the expected impact (COM.CUSTOMERS). Using these features ensures that the model is realistic and does not use data that would only become available after the outage ends.
+
+### Evaluation Metric
+The evaluation metric chosen for this regression problem is the **Root Mean Squared Error (RMSE)**. We selected RMSE because:
+- It penalizes larger errors more heavily, making it sensitive to significant deviations in predicted vs. actual durations.
+- It provides results in the same units as the response variable (hours), which is easier to interpret compared to other metrics like Mean Absolute Error (MAE).
+
+### Why RMSE?
+While MAE is less sensitive to outliers, we chose RMSE because it highlights situations where the model performs poorly for extreme outage durations. For this application, it’s important to minimize large errors as these could represent severe misjudgments in resource allocation during outages.
+
+[Link to prediction-related visualizations]
+
+## Baseline Model
+
+### Model Overview
+The baseline model is a **linear regression model** trained to predict OUTAGE.DURATION in hours using three categorical features: CAUSE.CATEGORY, CLIMATE.CATEGORY, and CLIMATE.REGION. These features were encoded using **one-hot encoding**, dropping the first category in each column to ensure proper model interpretability.
+
+### Features
+- **Quantitative Features**: None
+- **Nominal Features**: 
+  - CAUSE.CATEGORY (one-hot encoded)
+  - CLIMATE.CATEGORY (one-hot encoded)
+  - CLIMATE.REGION (one-hot encoded)
+
+### Model Performance
+- ***R^2 Scores***:
+  - Training Set: 0.1829
+  - Test Set: 0.1048
+- **Root Mean Squared Error (RMSE)***:
+  - Training Set: 96.30
+  - Test Set: 57.75
+
+### Evaluation of Model
+The R^2 values for both the training and test sets indicate that the baseline model explains only a small portion of the variance in OUTAGE.DURATION. However, the RMSE values suggest that the model is moderately accurate in predicting the average duration of an outage, with a difference of approximately 57 hours on unseen data. This baseline model provides a simple starting point for prediction and will serve as a reference for evaluating the improvements made in the final model.
+
+## Final Model
+
+### Model Overview
+The final model is a **linear regression model** trained to predict OUTAGE.DURATION in hours. This model expands upon the baseline by including an additional categorical feature, MONTH, and retaining quantitative features by setting remainder="passthrough". This ensures that all available numerical features are used alongside the one-hot encoded categorical features.
+
+### Features
+- **Quantitative Features**:
+  - All remaining numerical columns (passed through without transformation).
+- **Nominal Features**:
+  - CAUSE.CATEGORY (one-hot encoded)
+  - CLIMATE.CATEGORY (one-hot encoded)
+  - CLIMATE.REGION (one-hot encoded)
+  - MONTH (one-hot encoded)
+
+### Model Performance
+- **R^2 Scores**:
+  - Training Set: 0.00017
+  - Test Set: -0.0206
+- **Root Mean Squared Error (RMSE)**:
+  - Training Set: 106.522
+  - Test Set: 61.660
+
+
+
+[Link to final model visualizations]
 
 
 
