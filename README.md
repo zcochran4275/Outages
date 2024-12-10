@@ -130,16 +130,26 @@ The missingness mechanism for DEMAND.LOSS.MW could be correlated to the other co
 #### COM.CUSTOMERS
 The permutation test for COM.CUSTOMERS yielded a p-value of 0.0. This indicates a strong dependency between the missingness of DEMAND.LOSS.MW and the number of commercial customers (COM.CUSTOMERS). The absolute difference in means is significantly larger than what would be expected under the null hypothesis, meaning that missing demand loss values are not random with respect to COM.CUSTOMERS.
 
+<iframe
+  src="assets/ptestCustomers.html"
+  width="800"
+  height="600"
+  frameborder="0"
+></iframe>
+
 This finding suggests that outages affecting higher numbers of commercial customers are more likely to have demand loss values recorded, while smaller outages (affecting fewer commercial customers) may have missing values due to prioritization or reporting biases.
 
-[Link]
-
 #### PCT_LAND
-The permutation test for PCT_LAND yielded a p-value of 0.22, suggesting no significant dependency between the missingness of DEMAND.LOSS.MW and the percentage of land area (PCT_LAND). The absolute difference in means lies well within the range of test statistics under the null hypothesis, supporting the conclusion that missingness in DEMAND.LOSS.MW is independent of PCT_LAND.
+The permutation test for PCT_LAND yielded a p-value of 0.128, suggesting no significant dependency between the missingness of DEMAND.LOSS.MW and the percentage of land area (PCT_LAND). The absolute difference in means lies well within the range of test statistics under the null hypothesis, supporting the conclusion that missingness in DEMAND.LOSS.MW is independent of PCT_LAND.
+
+<iframe
+  src="assets/ptestPCTLand.html"
+  width="800"
+  height="600"
+  frameborder="0"
+></iframe>
 
 This result implies that geographic land area does not influence whether demand loss values are missing. The missingness is likely influenced by other variables or processes unrelated to land area.
-
-[Link]
 
 ## Hypothesis Test
 
