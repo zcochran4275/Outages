@@ -83,7 +83,7 @@ This bar chart shows that the outages that are caused by fuel emergencies have a
   frameborder="0"
 ></iframe>
 
-
+This bar chart shows that there is an increase in outages during the summer and fall months. Additionally there tended to be more storm related outages than non-storm outages during the summer months while winter and spring tended to have equal or more non-storm related outages than storm related outages. 
 
 <iframe
   src="assets/durationByMonth.html"
@@ -92,7 +92,7 @@ This bar chart shows that the outages that are caused by fuel emergencies have a
   frameborder="0"
 ></iframe>
 
-
+This graph shows how during the late fall months the outage durations tended to be the largest and that late spring/early summer months had a lower average outage duration.
 
 ## Aggregate Analysis
 
