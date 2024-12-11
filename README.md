@@ -190,7 +190,7 @@ The choice of a permutation test is appropriate because it makes no assumptions 
 ## Prediction Problem
 
 ### Type of Prediction Problem
-This is a regression problem, where the goal is to predict the OUTAGE.DURATION (response variable) in hours based on features available at the time of prediction.
+We want to predict outage duration using a subset of features from the dataset that we would know at the time of prediction. The time of prediction would most likely be right after an outage occurs and this model will be used to determine how long it might take to get restored
 
 ### Response Variable
 The response variable is OUTAGE.DURATION, which measures the length of an outage in hours. We chose this variable because understanding and accurately predicting outage durations can help in resource allocation and emergency planning during outages.
