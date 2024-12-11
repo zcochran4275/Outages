@@ -293,6 +293,13 @@ Used GridSearchCV to find the best hyperparameters using 5 fold cross-validation
 [Link to final model visualizations]
 
 ## Does Our Model Perform the Same for Regions with High GSP and for Regions with Low GSP
+Below is the distribution for Regional GSP. The threshold decided for low vs. high gsp was decided to be 52k.
+<iframe
+  src="assets/distGSP.html"
+  width="800"
+  height="600"
+  frameborder="0"
+></iframe>
 
 ### Hypotheses
 - ***Null Hypothesis***: The RMSE of outage duration is the same for our models predictions of outage duration for regions with high gsp and regions with low gsp. Any observed difference is due to random chance.
@@ -311,7 +318,7 @@ with our hypothesis test.
 ### Results
 
 <iframe
-  src="assets/ptestIsStorm.html"
+  src="assets/ptestFair.html"
   width="800"
   height="600"
   frameborder="0"
