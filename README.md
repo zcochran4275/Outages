@@ -292,7 +292,37 @@ Used GridSearchCV to find the best hyperparameters using 5 fold cross-validation
 
 [Link to final model visualizations]
 
+## Does Our Model Perform the Same for Regions with High GSP and for Regions with Low GSP
 
+### Hypotheses
+- ***Null Hypothesis***: The RMSE of outage duration is the same for our models predictions of outage duration for regions with high gsp and regions with low gsp. Any observed difference is due to random chance.
+- ***Alternative Hypothesis***: The RMSE of outage duration is greater for regions with low gsp.
+
+### Test Statistic
+The test statistic is the difference in RMSE. We chose this test statistic because categorizes the error of our model's predictions for each group and includes directionality that corresponds
+with our hypothesis test.
+
+### Test Details
+- Significance Level: 0.05
+- **Permutation Test**:
+  - We randomly shuffle the high_state_gsp labels (True for regions with state_gsp > 52k, False for other causes) 1,000 times.
+  - For each permutation, we calculate the difference in RMSE between the two groups, building a null distribution of the test statistic.
+
+### Results
+
+<iframe
+  src="assets/ptestIsStorm.html"
+  width="800"
+  height="600"
+  frameborder="0"
+></iframe>
+
+- Observed Difference in Means: -31
+- P-Value: 0.187
+
+### Conclusion
+At a significance level of 0.05:
+-  We fail to reject the null hypothesis and conclude that the difference in RMSE for regions with low gsp and regions with high gsp is due to chance and that our model appears to be fair in this regard.
 
 
 
